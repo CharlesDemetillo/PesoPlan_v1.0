@@ -1,8 +1,46 @@
 # PesoPlan — Release Notes
 
-**Version 1.1.0** · March 26, 2026  
+**Version 1.2.0** · March 31, 2026  
 Personal Finance Tracker for Windows  
 Developed by Charles Alexis Demetillo
+
+---
+
+## What's New in v1.2.0
+
+### New Features
+
+#### Dashboard — Pay Period Coverage
+- **Expandable month rows** in the annual overview table — click any month to see a pay period breakdown.
+- Each pay period card shows the income source, payday range, per-period income, assigned bills, total bill amount, and a **Covered / Short** status indicator.
+- Supports all pay cycle types: weekly, bi-weekly, semi-monthly, monthly, and custom.
+
+#### Bills & Loans — Redesigned Page
+- **Summary stat cards** at the top — current month total, Loans total, Subs & Utilities total, and a Paid This Month counter that turns green when all bills are paid.
+- **Filter bar** — search bills by name, filter by type (Loan / Subscription / Utility / One-time), and filter by status (Active / Completed). Shows "X of Y bills" count.
+- **Sorted bill cards** — bills grouped by type priority (Loans first) with colored left borders and type icons.
+- **Type and payment badges** — color-coded type badge and Paid/Unpaid badge on each card.
+- **Improved payment tracker** — current month highlighted with a blue border, paid months in emerald green with a check icon, inactive months dimmed.
+
+#### Bills & Loans — Edit with Confirmation
+- **Pencil icon** on each bill card to enter inline edit mode.
+- All fields are editable: name, type, monthly amount, due day, start month, term months, and already paid.
+- On save, a **confirmation modal** appears showing a side-by-side diff of all changes — changed fields highlighted in amber, unchanged fields in gray.
+- You must type **"Edit"** to enable the Confirm button.
+
+#### Bills & Loans — Delete with Confirmation
+- Clicking the trash icon now opens a **delete confirmation modal** instead of deleting immediately.
+- The modal shows the bill's details (name, type, amount, due day, term) in a red-themed layout.
+- You must type **"Delete"** to enable the Confirm button.
+- This action cannot be undone.
+
+#### Success Notifications
+- A **green success banner** appears at the top of the Bills page after a confirmed edit or delete.
+- Shows the bill name and action taken (e.g. "MariBank CC 1" has been updated successfully).
+- Auto-dismisses after 3 seconds, or click the X to close manually.
+
+### Bug Fixes
+- **PostCSS startup warning eliminated** — the `MODULE_TYPELESS_PACKAGE_JSON` warning no longer appears when running `npm run electron:dev`.
 
 ---
 
@@ -36,7 +74,7 @@ Developed by Charles Alexis Demetillo
 
 ## Installation
 
-1. Run **PesoPlan-Setup-1.1.0.exe**
+1. Run **PesoPlan-Setup-1.2.0.exe**
 2. Follow the installer prompts
 3. Choose your installation directory (default: `C:\Program Files\PesoPlan`)
 4. Launch PesoPlan from the Desktop shortcut or Start Menu
@@ -92,10 +130,15 @@ Each account has its own database file. **Back up this folder** to preserve your
 
 ---
 
-## Previous Release
+## Previous Releases
+
+### v1.1.0 — March 26, 2026
+- Desktop notifications for bill due dates with configurable threshold
+- Bills header shows correct current month total
+- Fixed loan term, one-time bill, and savings pool calculation bugs
+- Consistent bill calculation logic across all pages
 
 ### v1.0.0 — January 1, 2026 (Initial Release)
-
 - Multi-account PIN authentication with security question recovery
 - Dashboard with KPI cards, cashflow bar chart, and expense breakdown pie chart
 - Setup module — income sources, budget targets, expense categories, year management

@@ -5,6 +5,46 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.2.0] — 2026-03-31
+
+### Added
+
+#### Dashboard — Pay Period Coverage
+- Expandable month rows in the annual overview table showing pay period breakdown.
+- Each pay period card displays the income source, payday range, per-period income, assigned bills, total bill amount, and coverage status (Covered / Short).
+- Supports all pay cycle types: weekly, bi-weekly, semi-monthly, monthly, and custom.
+- New utility functions `getSourcePaydays` and `getPayPeriodsForMonth` in `utils.ts`.
+- New `PayPeriod` and `PayPeriodBill` interfaces in `types/index.ts`.
+
+#### Bills & Loans — Redesigned UI
+- **Summary stat cards** — Current month total, Loans total, Subs & Utilities total, and Paid This Month counter at the top of the page.
+- **Filter bar** — Search bills by name, filter by type (Loan / Subscription / Utility / One-time), and filter by status (Active / Completed). Shows "X of Y bills" count.
+- **Sorted bill cards** — Bills grouped by type priority (Loans → Subscriptions → Utilities → One-time) with colored left borders and type icons.
+- **Type and payment badges** — Color-coded type badge and Paid/Unpaid badge per bill card.
+- **Improved payment tracker** — Current month highlighted with blue border, paid months in emerald green with check icon, inactive months dimmed. Cleaner button sizing.
+
+#### Bills & Loans — Edit with Confirmation
+- **Pencil icon** on each bill card to enter inline edit mode.
+- Inline edit form replaces the card content with all editable fields (name, type, amount, due day, start month, term, already paid).
+- Edited card highlighted with a blue ring.
+- **Confirmation modal** on save — shows a diff of all changes (old → new) with changed fields highlighted in amber. Unchanged fields shown in gray.
+- User must type **"Edit"** (case-sensitive) to enable the Confirm button.
+
+#### Bills & Loans — Delete with Confirmation
+- **Delete confirmation modal** — red-themed, shows bill details (name, type badge, amount, due day, term for loans).
+- User must type **"Delete"** (case-sensitive) to enable the Confirm button.
+- Clicking backdrop or Cancel dismisses the modal.
+
+#### Bills & Loans — Success Toasts
+- Green success banner after a confirmed edit or delete action.
+- Shows the bill name and action taken (updated / deleted).
+- Auto-dismisses after 3 seconds with manual close button.
+
+### Fixed
+- **PostCSS config warning** — Converted `postcss.config.js` from ES module (`export default`) to CommonJS (`module.exports`) to eliminate the `MODULE_TYPELESS_PACKAGE_JSON` warning on startup.
+
+---
+
 ## [1.1.0] — 2026-03-26
 
 ### Added
