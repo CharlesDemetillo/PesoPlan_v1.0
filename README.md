@@ -41,6 +41,9 @@ Developed by Charles Alexis Demetillo
 
 ### Bug Fixes
 - **PostCSS startup warning eliminated** — the `MODULE_TYPELESS_PACKAGE_JSON` warning no longer appears when running `npm run electron:dev`.
+- **Pay period coverage showed wrong bills per paycheck** — Bills were assigned to the pay period whose date range *contained* the due date, not the paycheck that actually arrives before the due date. For example, a bill due on the 21st was shown under the 25th Payday even though you don’t receive that money until the 25th. Pay periods now run **from the payday forward**, so every bill is shown under the paycheck you can realistically use to pay it.
+- **Advance-paid bills still appeared in coverage** — Bills you had already marked as paid for the month continued to show up in the pay period breakdown. Paid bills are now excluded, giving you an accurate view of what is still outstanding.
+- **Bills due before the first payday** — Bills due in the days before your first paycheck of the month (e.g., a bill due on the 3rd when your first payday is the 5th) are now shown in a separate **"Before 1st Payday"** section labeled *Carry-over from previous month*, making it clear those require funds from your previous month’s last paycheck.
 
 ---
 

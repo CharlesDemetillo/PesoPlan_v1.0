@@ -42,6 +42,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 - **PostCSS config warning** — Converted `postcss.config.js` from ES module (`export default`) to CommonJS (`module.exports`) to eliminate the `MODULE_TYPELESS_PACKAGE_JSON` warning on startup.
+- **Pay period bill assignment** — Bills were incorrectly assigned to the period whose date range *contained* the due day, meaning a bill due on the 21st appeared under the 25th Payday. Periods now run **from the payday forward** (payday → next payday − 1), so bills are only shown under the paycheck that has already arrived.
+- **Advance-paid bills shown in coverage** — Bills already marked as paid for the current month were still appearing in the pay period coverage cards. Paid bills are now excluded from the breakdown, correctly reflecting remaining obligations.
+- **Before 1st Payday carry-over** — Bills due before the month's first payday are now grouped into a dedicated "Before 1st Payday" card with ₱0 income and a "Carry-over from previous month" label, making it clear these require funds from the prior month's last paycheck.
 
 ---
 
