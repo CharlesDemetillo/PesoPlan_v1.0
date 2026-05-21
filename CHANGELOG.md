@@ -5,6 +5,59 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [1.3.0] — 2026-05-21
+
+### Added
+
+#### Analytics Module
+- New **Analytics** page accessible via `Ctrl+7` and the sidebar (`BarChart2` icon).
+- Three-tab layout: **Insights**, **Income Loss Simulator**, and **Purchase Planner**.
+- New `AppView` value `'analytics'` added to `types/index.ts`.
+- New `AnalyticsModule.tsx` component under `src/components/modules/`.
+
+#### Analytics — Insights Tab
+- Proactive cashflow analysis engine with 10 detection rules, grouped by severity (critical / warning / info):
+  1. **Income source ending** — alerts when an active income source ends this month or next, with the monthly income impact.
+  2. **Cashflow gap** — flags any month where outflows exist but income is zero.
+  3. **Deficit months** — lists months where net cashflow (income − bills − expenses − savings) is negative, with total deficit amount.
+  4. **Bill spike** — detects months where bills exceed 130% of the year's average bill amount.
+  5. **Expense spike** — detects months where expenses exceed 140% of the average across months that have expenses.
+  6. **Loan ending soon** — positive alert when a loan or subscription ends within the next 2 months, showing freed-up amount.
+  7. **Savings goal at risk** — warns if projected pool allocation will not reach a goal's `target_amount` by `target_month`/`target_year`.
+  8. **Low savings rate** — info card when the effective annual savings rate falls below 80% of the budget target.
+  9. **High bills-to-income ratio** — warns when bills consume more than 60% of income in any month.
+  10. **Surplus streak** — positive insight when 3 or more consecutive months have positive net cashflow.
+- Summary stat cards: Critical count, Warning count, Info count, Projected Savings YTD, and Average Monthly Net.
+- Empty state when no issues are detected.
+
+#### Analytics — Income Loss Simulator Tab
+- Dropdown to select an income source and a start month for the simulated loss.
+- Per-month table comparing baseline vs. scenario for income, net cashflow, and savings.
+- Row-level indicators: months that newly go into deficit, months that cannot cover bills.
+- Summary cards: total income lost, total savings impact, new deficit months, and months that can't cover bills.
+
+#### Analytics — Purchase Planner Tab
+- Inputs: purchase name, price, down payment, annual interest rate (%), loan term (months or years), and loan start month/year.
+- Outputs:
+  - Monthly payment, total payment, total interest, total cost, cost-increase %, and down payment %.
+  - DTI (debt-to-income) ratio with rating: Comfortable (<20%) / Manageable (<30%) / Stretched (<40%) / Risky (≥40%).
+  - Net cashflow after adding the new loan payment, with affordability indicator.
+  - Months to save for the down payment at the current average savings rate.
+  - Recommended down payment to stay under a 28% DTI threshold.
+  - Month-by-month cashflow impact table for the loan's duration (capped at 12 months displayed).
+  - Full amortization schedule: payment number, monthly payment, principal portion, interest portion, remaining balance.
+  - Down payment comparison table for 10%, 20%, 30%, and the user-chosen percentage — showing monthly payment, total interest, total cost, and DTI per scenario.
+- Handles 0% interest rate (simple division amortization).
+- New `SavingsGoal` fields `target_month` and `target_year` used by goal-risk detection in Insights tab.
+
+#### Security — Idle Auto-lock
+- Session locks automatically after **5 minutes of inactivity** (configurable via the `idle_timeout_minutes` setting, default `'5'`).
+- Timer resets on any `mousedown`, `mousemove`, `keydown`, `scroll`, or `touchstart` event.
+- On timeout, the user is logged out and returned to the account selection screen.
+- `idle_timeout_minutes` field added to the `Settings` interface in `types/index.ts` and default added to `useAppStore.ts`.
+
+---
+
 ## [1.2.0] — 2026-03-31
 
 ### Added

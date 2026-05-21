@@ -1,8 +1,46 @@
 # PesoPlan — Release Notes
 
-**Version 1.2.0** · March 31, 2026  
+**Version 1.3.0** · May 21, 2026  
 Personal Finance Tracker for Windows  
 Developed by Charles Alexis Demetillo
+
+---
+
+## What's New in v1.3.0
+
+### New Features
+
+#### Analytics Module
+- **New Analytics page** (Ctrl+7) with three tabs: Insights, Income Loss Simulator, and Purchase Planner.
+- **Insights tab** — Proactive cashflow analysis that automatically detects up to 10 types of financial risks and opportunities, grouped by severity (Critical / Warning / Info):
+  - Income source ending this month or next
+  - Months with no income but active bills/expenses (cashflow gap)
+  - Months with negative net cashflow (deficit)
+  - Bill spikes — months where bills are more than 30% above your average
+  - Expense spikes — months where spending is more than 40% above your average
+  - Loans or subscriptions ending soon (positive alert)
+  - Savings goals at risk of not reaching their target by the deadline
+  - Effective savings rate falling below your budget target
+  - Months where bills consume more than 60% of income
+  - Consecutive surplus-month streaks
+- Summary stat cards show total Critical, Warning, and Info counts alongside Projected Savings and Average Monthly Net for the year.
+- **Income Loss Simulator tab** — Select any income source and a "loss from" month to model the impact across the full year. Shows per-month baseline vs. scenario for income, net cashflow, and savings, with indicators for months that go into deficit or can no longer cover bills.
+- **Purchase Planner tab** — Full loan amortization calculator for major purchases. Input the purchase price, down payment, annual interest rate, loan term (in months or years), and start date. Outputs:
+  - Monthly payment, total interest paid, total cost, and cost-increase percentage
+  - DTI ratio with a Comfortable / Manageable / Stretched / Risky rating
+  - Net cashflow after adding the new loan payment
+  - Months required to save for the down payment at your current savings rate
+  - Recommended down payment to keep DTI under 28%
+  - Month-by-month cashflow impact for the loan period
+  - Full amortization schedule (payment, principal, interest, remaining balance)
+  - Down payment comparison table (10%, 20%, 30%, and your chosen %)
+
+#### Security — Idle Auto-lock
+- The app automatically locks and returns to the account selection screen after **5 minutes of inactivity**.
+- Any mouse movement, keystroke, scroll, or touch resets the timer.
+
+### Bug Fixes
+- None in this release.
 
 ---
 
@@ -130,10 +168,18 @@ Each account has its own database file. **Back up this folder** to preserve your
 | `Ctrl + 4` | Expenses |
 | `Ctrl + 5` | Cashflow |
 | `Ctrl + 6` | Savings |
+| `Ctrl + 7` | Analytics |
 
 ---
 
 ## Previous Releases
+
+### v1.2.0 — March 31, 2026
+- Dashboard pay period coverage with expandable month rows
+- Bills & Loans page redesigned with stat cards, filter bar, sorted bill cards, and type/payment badges
+- Inline bill editing with change-diff confirmation modal (type "Edit" to confirm)
+- Delete confirmation modal (type "Delete" to confirm) with success toast notifications
+- Fixed pay period bill assignment, advance-paid bill visibility, and before-first-payday carry-over
 
 ### v1.1.0 — March 26, 2026
 - Desktop notifications for bill due dates with configurable threshold
